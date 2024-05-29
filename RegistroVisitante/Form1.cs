@@ -25,6 +25,14 @@ public partial class Form1 : Form
         UserControlRegistrarSaida userControl = new UserControlRegistrarSaida();
         AdicionarTabPage(name, text, userControl);
     }
+    private void buttonGerarRelatorio_Click(object sender, EventArgs e)
+    {
+        tabControl.TabPages.Clear();
+        string name = "tabPageGerarRelatorio";
+        string text = "Gerar Relatório";
+        UserControlRelatorios userControl = new UserControlRelatorios();
+        AdicionarTabPage(name, text, userControl);
+    }
     private void AdicionarTabPage(string name, string text, UserControl userControl)
     {
         TabPage tabPage = new TabPage();
@@ -36,5 +44,5 @@ public partial class Form1 : Form
         tabControl.SelectTab(tabPage);
     }
 
-   
+    
 }

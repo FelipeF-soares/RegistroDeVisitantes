@@ -32,12 +32,14 @@
             buttonRegistrarSaida = new Button();
             buttonRegistrarEntrada = new Button();
             tabControl = new TabControl();
+            buttonGerarRelatorio = new Button();
             panelMenuLateral.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenuLateral
             // 
             panelMenuLateral.BackColor = Color.MediumPurple;
+            panelMenuLateral.Controls.Add(buttonGerarRelatorio);
             panelMenuLateral.Controls.Add(buttonRegistrarSaida);
             panelMenuLateral.Controls.Add(buttonRegistrarEntrada);
             panelMenuLateral.Dock = DockStyle.Left;
@@ -79,6 +81,18 @@
             tabControl.Size = new Size(743, 450);
             tabControl.TabIndex = 1;
             // 
+            // buttonGerarRelatorio
+            // 
+            buttonGerarRelatorio.FlatStyle = FlatStyle.Flat;
+            buttonGerarRelatorio.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonGerarRelatorio.Location = new Point(0, 218);
+            buttonGerarRelatorio.Name = "buttonGerarRelatorio";
+            buttonGerarRelatorio.Size = new Size(168, 53);
+            buttonGerarRelatorio.TabIndex = 2;
+            buttonGerarRelatorio.Text = "Gerar Relatório";
+            buttonGerarRelatorio.UseVisualStyleBackColor = true;
+            buttonGerarRelatorio.Click += buttonGerarRelatorio_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -101,5 +115,6 @@
         private Button buttonRegistrarEntrada;
         private TabControl tabControl;
         private Button buttonRegistrarSaida;
+        private Button buttonGerarRelatorio;
     }
 }
