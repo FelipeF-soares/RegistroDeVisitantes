@@ -55,6 +55,29 @@ public partial class UserControlRegistrarSaida : UserControl
         }
     }
 
+    private void buttonLimpar_Click(object sender, EventArgs e)
+    {
+        LimparCampo();
+    }
+
+    private void buttonRegistrarSaida_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            string id = textBoxID.Text;
+            var visitante = controller.RetornaVisitantePorId(int.Parse(id));
+            visitante.RegistrarSaida();
+            controller.AtualizarVisitante(visitante);
+            LimparCampo();
+            visitantes = controller.RetornarTodosVisitantes();
+            CarregaDados();
+
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
     private void LimparCampo()
     {
         textBoxID.Text = string.Empty;
@@ -64,18 +87,4 @@ public partial class UserControlRegistrarSaida : UserControl
         comboBoxBloco.SelectedIndex = -1;
     }
 
-    private void buttonLimpar_Click(object sender, EventArgs e)
-    {
-        LimparCampo();
-    }
-
-    private void buttonRegistrarSaida_Click(object sender, EventArgs e)
-    {
-        string id = textBoxID.Text;
-        var visitante = controller.RetornaVisitantePorId(int.Parse(id));
-        visitante.RegistrarSaida();
-        controller.AtualizarVisitante(visitante);
-        LimparCampo();
-        CarregaDados();
-    }
 }

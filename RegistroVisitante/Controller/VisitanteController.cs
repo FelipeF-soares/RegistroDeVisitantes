@@ -1,6 +1,8 @@
 ﻿using RegistroVisitante.Domain;
 using RegistroVisitante.Domain.Dto;
+using RegistroVisitante.Domain.Relatorio;
 using RegistroVisitante.Persistence;
+using RegistroVisitante.Persistence.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +14,20 @@ namespace RegistroVisitante.Controller;
 public class VisitanteController
 {
     private VisitantePersistence persistence;
+    private GeralPersistence geralPersistence;
+    private CriarRelatorio relatorio;
     public VisitanteController()
     {
         persistence = new VisitantePersistence();
+        geralPersistence = new GeralPersistence();
+        relatorio = new CriarRelatorio();
     }
     public bool RegistrarEntrada(VisitanteDto dto)
     {
-        try
-        {
-            var visitante = dto.VisitanteValido();
-            visitante.RegistrarEntrada();
-            persistence.Registrar(visitante);
-            return persistence.Salvar();
-        }
-        catch (Exception ex)
-        {
-            throw new Exception(ex.Message);
-        }
+        var visitante = dto.VisitanteValido();
+        visitante.RegistrarEntrada();
+        geralPersistence.Registrar(visitante);
+        return geralPersistence.Salvar();
     }
     public Visitante[] RetornarTodosVisitantes()
     {
@@ -40,9 +39,31 @@ public class VisitanteController
        return persistence.BuscarVisitantePorID(id);
     }
 
+    public Visitante[] RetornaVisitantesPorData(DateTime data)
+    {
+       var visitantes = persistence.BuscarTodosVisitantesPorData(data);
+       return visitantes;  
+    }
+
+    public Visitante[] RetornaVisitantesRG(string rg)
+    {
+        var visitantes = persistence.BuscarTodasVisitasPorRg(rg);
+        return visitantes;
+    }
+
+    public Visitante[] RetornaVisitantesUnidade(string bloco, string unidade)
+    {
+        var visitantes = persistence.BuscarTodosVisitantesPorUnidade(bloco, unidade);
+        return visitantes;
+    }
+
     public void AtualizarVisitante(Visitante visitante)
     {
-        persistence.Atualizar(visitante);
-        persistence.Salvar();
+        geralPersistence.Atualizar(visitante);
+        geralPersistence.Salvar();
+    }
+    public void GerarRelatorio(Visitante[] visitantes)
+    {
+        relatorio.GerarRelatorioEmPDF(visitantes);
     }
 }

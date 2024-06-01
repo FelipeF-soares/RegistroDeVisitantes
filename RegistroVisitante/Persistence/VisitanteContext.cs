@@ -18,4 +18,5 @@ public class VisitanteContext : DbContext
     }
 
     public DbSet<Visitante> Visitantes { get; set; }
+    public DbSet<LivroDePassagemDeServico> PassagemDeServico { get; set; }
 }

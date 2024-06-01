@@ -6,33 +6,25 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegistroVisitante.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Livro : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateTable(
-                name: "Visitantes",
+                name: "PassagemDeServico",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(type: "longtext", nullable: false)
+                    NomeColaborador = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Rg = table.Column<string>(type: "longtext", nullable: false)
+                    RelatorioDiario = table.Column<string>(type: "longtext", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    DataHoraEntrada = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    DataHoraSaida = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Bloco = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Apto = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    DataRelatorio = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Visitantes", x => x.Id);
+                    table.PrimaryKey("PK_PassagemDeServico", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
@@ -40,7 +32,7 @@ namespace RegistroVisitante.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Visitantes");
+                name: "PassagemDeServico");
         }
     }
 }

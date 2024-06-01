@@ -11,6 +11,7 @@ public class Visitante
     public int Id { get; set; }
     public string Nome { get; set; }
     public string Rg { get; set; }
+    public string Informacoes { get; set; }
     public DateTime DataHoraEntrada { get; set; }
     public DateTime DataHoraSaida { get; set; }
     public string Bloco { get; set; }

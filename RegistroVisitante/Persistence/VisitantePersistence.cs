@@ -15,22 +15,6 @@ public class VisitantePersistence : IVisitantePersistence
     {
         context = new VisitanteContext();
     }
-    public void Registrar<T>(T entity) where T : class
-    {
-        context.Add(entity);
-    }
-    public void Atualizar<T>(T entity) where T : class
-    {
-        context.Update(entity);
-    }
-    public void Deletar<T>(T entity) where T : class
-    {
-        context.Remove(entity);
-    }
-    public bool Salvar()
-    {
-        return (context.SaveChanges()) > 0;
-    }
     public Visitante[] BuscarTodosVisitantesSemHorarioSaida()
     {
         IQueryable<Visitante> visitantes = context.Visitantes;
@@ -46,17 +30,23 @@ public class VisitantePersistence : IVisitantePersistence
     }
     public Visitante[] BuscarTodosVisitantesPorUnidade(string bloco, string unidade)
     {
-        throw new NotImplementedException();
+        var visitantes = context.Visitantes.Where(visitante => (visitante.Bloco == bloco) && (visitante.Apto == unidade)).ToArray();
+        if (visitantes.Length <= 0) throw new Exception("Nenhum visitante encontrado!");
+        return visitantes.ToArray();
     }
 
     public Visitante[] BuscarTodosVisitantesPorData(DateTime data)
     {
-        throw new NotImplementedException();
+       var visiatante = context.Visitantes.Where(x => x.DataHoraEntrada.Date == data.Date).ToArray();
+        if (visiatante.Length <= 0) throw new Exception("Nenhum visitante encontrado!");
+        return visiatante.ToArray();
     }
 
     public Visitante[] BuscarTodasVisitasPorRg(string RG)
     {
-        throw new NotImplementedException();
+        var visitantes = context.Visitantes.Where(visiatante => visiatante.Rg == RG).ToArray();
+        if (visitantes.Length <= 0) throw new Exception("Nenhum visitante encontrado!");
+        return visitantes.ToArray();
     }
 
 }

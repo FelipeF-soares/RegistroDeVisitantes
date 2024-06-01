@@ -14,11 +14,12 @@ public class CriarRelatorio
 {
     private BaseFont fonteBase;
     private iTextSharp.text.Font fonteCelula;
+    private string caminhoLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"img\\logo.png");
 
     public CriarRelatorio()
     {
         fonteBase = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, false);
-        fonteCelula = new iTextSharp.text.Font(fonteBase, 12, iTextSharp.text.Font.NORMAL, BaseColor.Black);
+        fonteCelula = new iTextSharp.text.Font(fonteBase, 10, iTextSharp.text.Font.NORMAL, BaseColor.Black);
     }
     public void GerarRelatorioEmPDF(Visitante[] visitantes) 
     {
@@ -32,8 +33,9 @@ public class CriarRelatorio
             pdf.Open();
             var titulo = CriarTitulo("Relatório de Visitantes");
             pdf.Add(titulo);
-            var tabela = CriaTabela(5);
-            string[] listaDeValores = { "Nome Completo", "Bloco", "Apto", "Horário Entrada", "Horário Saída"};
+            AdicionaLogo(caminhoLogo, pdf, writer);
+            var tabela = CriaTabela(7);
+            string[] listaDeValores = { "Nome Completo","RG","Informações", "Bloco", "Apto", "Horário Entrada", "Horário Saída"};
             VinculaCelulaATabela(tabela, listaDeValores);
             VinculaValorACelula(tabela, visitantes);
             pdf.Add(tabela);
@@ -74,6 +76,7 @@ public class CriarRelatorio
         var fonteTitulo =  new iTextSharp.text.Font(fonteBase,32,iTextSharp.text.Font.NORMAL, BaseColor.Black);
         var paragrafo = new Paragraph($"{titulo}\n\n", fonteTitulo);
         paragrafo.Alignment = Element.ALIGN_LEFT;
+        paragrafo.SpacingAfter = 4;
         return paragrafo;
     }
 
@@ -94,21 +97,28 @@ public class CriarRelatorio
     private PdfPTable CriaTabela(int quantidadeColunas)
     {
         var tabela = new PdfPTable(quantidadeColunas);
-        float[] largurasColunas = { 2f, 1f,1f, 1.5f, 1.5f};
+        float[] largurasColunas = { 2.5f,1.5f,2.5f, 1f,1f, 1.5f, 1.5f};
         tabela.SetWidths(largurasColunas);
         tabela.DefaultCell.BorderWidth = 0;
         tabela.WidthPercentage = 100;
          return tabela;
     }
 
-    private PdfPCell CriaCelula(string nome)
+    private PdfPCell CriaCelula(string nome, PdfPTable tabela)
     {
+        var bgColor = iTextSharp.text.BaseColor.White;
+        if(tabela.Rows.Count % 2 ==1)
+            {
+            bgColor = new BaseColor(0.95F, 0.95F, 0.95F);
+             }
         var celula = new PdfPCell(new Phrase(nome, fonteCelula));
         celula.HorizontalAlignment = PdfPCell.ALIGN_LEFT;
         celula.VerticalAlignment = PdfPCell.ALIGN_MIDDLE;
         celula.Border = 0;
         celula.BorderWidthBottom = 1;
         celula.FixedHeight = 25;
+        celula.PaddingBottom = 5;
+        celula.BackgroundColor = bgColor;
         return celula;
     }
 
@@ -116,7 +126,7 @@ public class CriarRelatorio
     {
         foreach(var valor in listaDeValores)
         {
-            var celula = CriaCelula(valor);
+            var celula = CriaCelula(valor, tabela);
             tabela.AddCell(celula);
         }
     }
@@ -124,16 +134,36 @@ public class CriarRelatorio
     {
        for(int i = 0;i < listaDeValores.Length; i++)
         {
-            var nome = CriaCelula(listaDeValores[i].Nome);
+            var nome = CriaCelula(listaDeValores[i].Nome,tabela);
             tabela.AddCell(nome);
-            var bloco = CriaCelula(listaDeValores[i].Bloco);
+            var rg = CriaCelula(listaDeValores[i].Rg, tabela);
+            tabela.AddCell(rg);
+            var informacoes = CriaCelula(listaDeValores[i].Informacoes, tabela);
+            tabela.AddCell(informacoes);
+            var bloco = CriaCelula(listaDeValores[i].Bloco, tabela);
             tabela.AddCell(bloco);
-            var apto = CriaCelula(listaDeValores[i].Apto);
+            var apto = CriaCelula(listaDeValores[i].Apto, tabela);
             tabela.AddCell(apto);
-            var entrada = CriaCelula(listaDeValores[i].DataHoraEntrada.ToString("dd/MM/yy - HH:mm"));
+            var entrada = CriaCelula(listaDeValores[i].DataHoraEntrada.ToString("dd/MM/yy - HH:mm"), tabela);
             tabela.AddCell(entrada);
-            var saida = CriaCelula(listaDeValores[i].DataHoraSaida.ToString());
+            var saida = CriaCelula(listaDeValores[i].DataHoraSaida.ToString(), tabela);
             tabela.AddCell(saida);
+        }
+    }
+
+    private void AdicionaLogo(string caminhoLogo,Document pdf, PdfWriter writer)
+    {
+        if(File.Exists(caminhoLogo))
+        {
+            iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(caminhoLogo);
+            float razaoAlturaLargura = logo.Width / logo.Height;
+            float alturaLogo = 90;
+            float larguraLogo = alturaLogo * razaoAlturaLargura;
+            logo.ScaleToFit(larguraLogo, alturaLogo);
+            var margemEsquerda = pdf.PageSize.Width - pdf.RightMargin - larguraLogo;
+            var margemTopo = pdf.PageSize.Height - pdf.TopMargin - 54;
+            logo.SetAbsolutePosition(margemEsquerda, margemTopo);
+            writer.DirectContent.AddImage(logo, false);
         }
     }
 }

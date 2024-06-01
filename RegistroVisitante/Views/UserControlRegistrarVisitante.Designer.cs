@@ -33,11 +33,13 @@
             labelBloco = new Label();
             label1 = new Label();
             textBoxNome = new TextBox();
-            textBoxRG = new TextBox();
             comboBoxBloco = new ComboBox();
             comboBoxApto = new ComboBox();
             buttonLimpar = new Button();
             buttonRegistrar = new Button();
+            textBoxInformacoes = new TextBox();
+            labelInformacaoes = new Label();
+            maskedTextBoxRG = new MaskedTextBox();
             SuspendLayout();
             // 
             // labelNome
@@ -54,7 +56,7 @@
             // 
             labelRG.Anchor = AnchorStyles.None;
             labelRG.AutoSize = true;
-            labelRG.Location = new Point(34, 93);
+            labelRG.Location = new Point(34, 105);
             labelRG.Name = "labelRG";
             labelRG.Size = new Size(25, 15);
             labelRG.TabIndex = 1;
@@ -88,14 +90,6 @@
             textBoxNome.Size = new Size(291, 23);
             textBoxNome.TabIndex = 4;
             // 
-            // textBoxRG
-            // 
-            textBoxRG.Anchor = AnchorStyles.None;
-            textBoxRG.Location = new Point(65, 90);
-            textBoxRG.Name = "textBoxRG";
-            textBoxRG.Size = new Size(100, 23);
-            textBoxRG.TabIndex = 5;
-            // 
             // comboBoxBloco
             // 
             comboBoxBloco.Anchor = AnchorStyles.None;
@@ -112,7 +106,7 @@
             comboBoxApto.Anchor = AnchorStyles.None;
             comboBoxApto.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxApto.FormattingEnabled = true;
-            comboBoxApto.Items.AddRange(new object[] { "T1", "T2", "T3", "T4" });
+            comboBoxApto.Items.AddRange(new object[] { "T1", "T2", "T3", "T4", "T5", "11", "12", "13", "14", "15", "16", "21", "22", "23", "24", "25", "26", "31", "32", "33", "34", "35", "36", "41", "42", "43", "44", "45", "46" });
             comboBoxApto.Location = new Point(258, 158);
             comboBoxApto.Name = "comboBoxApto";
             comboBoxApto.Size = new Size(121, 23);
@@ -144,15 +138,44 @@
             buttonRegistrar.UseVisualStyleBackColor = false;
             buttonRegistrar.Click += buttonRegistrar_ClickAsync;
             // 
+            // textBoxInformacoes
+            // 
+            textBoxInformacoes.Anchor = AnchorStyles.None;
+            textBoxInformacoes.Location = new Point(258, 105);
+            textBoxInformacoes.Name = "textBoxInformacoes";
+            textBoxInformacoes.Size = new Size(172, 23);
+            textBoxInformacoes.TabIndex = 11;
+            // 
+            // labelInformacaoes
+            // 
+            labelInformacaoes.Anchor = AnchorStyles.None;
+            labelInformacaoes.AutoSize = true;
+            labelInformacaoes.Location = new Point(176, 108);
+            labelInformacaoes.Name = "labelInformacaoes";
+            labelInformacaoes.Size = new Size(76, 15);
+            labelInformacaoes.TabIndex = 10;
+            labelInformacaoes.Text = "Informações:";
+            // 
+            // maskedTextBoxRG
+            // 
+            maskedTextBoxRG.Anchor = AnchorStyles.None;
+            maskedTextBoxRG.Location = new Point(65, 105);
+            maskedTextBoxRG.Mask = "  00,000,000-a";
+            maskedTextBoxRG.Name = "maskedTextBoxRG";
+            maskedTextBoxRG.Size = new Size(79, 23);
+            maskedTextBoxRG.TabIndex = 12;
+            // 
             // UserControlRegistrarVisitante
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(maskedTextBoxRG);
+            Controls.Add(textBoxInformacoes);
+            Controls.Add(labelInformacaoes);
             Controls.Add(buttonRegistrar);
             Controls.Add(buttonLimpar);
             Controls.Add(comboBoxApto);
             Controls.Add(comboBoxBloco);
-            Controls.Add(textBoxRG);
             Controls.Add(textBoxNome);
             Controls.Add(label1);
             Controls.Add(labelBloco);
@@ -171,10 +194,12 @@
         private Label labelBloco;
         private Label label1;
         private TextBox textBoxNome;
-        private TextBox textBoxRG;
         private ComboBox comboBoxBloco;
         private ComboBox comboBoxApto;
         private Button buttonLimpar;
         private Button buttonRegistrar;
+        private TextBox textBoxInformacoes;
+        private Label labelInformacaoes;
+        private MaskedTextBox maskedTextBoxRG;
     }
 }

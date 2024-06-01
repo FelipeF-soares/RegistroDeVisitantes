@@ -29,7 +29,8 @@ namespace RegistroVisitante.Views
             {
                 VisitanteDto dto = new VisitanteDto();
                 dto.Nome = textBoxNome.Text;
-                dto.Rg = textBoxRG.Text;
+                dto.Rg = maskedTextBoxRG.Text;
+                dto.Infomacoes = textBoxInformacoes.Text;
                 dto.Apto = comboBoxApto.Text;
                 dto.Bloco = comboBoxBloco.Text;
 
@@ -57,12 +58,13 @@ namespace RegistroVisitante.Views
         private void LimparCampos()
         {
             textBoxNome.Text = string.Empty;
-            textBoxRG.Text = string.Empty; ;
+            maskedTextBoxRG.Text = string.Empty;
+            textBoxInformacoes.Text = string.Empty;
             comboBoxApto.SelectedIndex = -1;
             comboBoxBloco.SelectedIndex = -1;
 
         }
 
-       
+
     }
 }

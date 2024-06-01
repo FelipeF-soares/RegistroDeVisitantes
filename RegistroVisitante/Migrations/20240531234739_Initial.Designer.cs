@@ -11,7 +11,7 @@ using RegistroVisitante.Persistence;
 namespace RegistroVisitante.Migrations
 {
     [DbContext(typeof(VisitanteContext))]
-    [Migration("20240528155831_Initial")]
+    [Migration("20240531234739_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -40,6 +40,10 @@ namespace RegistroVisitante.Migrations
 
                     b.Property<DateTime>("DataHoraSaida")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Informacoes")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Nome")
                         .IsRequired()
