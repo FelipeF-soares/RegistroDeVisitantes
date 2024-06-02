@@ -26,12 +26,12 @@ public class CriarRelatorio
         
         if(visitantes.Length > 0)
         {
-            var pdf = ConfiguracaoDaPagina(15F, 15F, 15F, 20F);
-            var nomeDoArquivo = GerarNomeDoArquivo();
+            var pdf = ConfiguracaoDaPagina(15F, 15F, 15F, 20F, true);
+            var nomeDoArquivo = GerarNomeDoArquivo("Visitantes");
             var arquivo = CriaArquivo(nomeDoArquivo);
             var writer = GerarDocumentoPDF(pdf, arquivo);
             pdf.Open();
-            var titulo = CriarTitulo("Relatório de Visitantes");
+            var titulo = CriarTitulo("Relatório de Visitantes",32);
             pdf.Add(titulo);
             AdicionaLogo(caminhoLogo, pdf, writer);
             var tabela = CriaTabela(7);
@@ -45,20 +45,47 @@ public class CriarRelatorio
         }
     }
 
-    private Document ConfiguracaoDaPagina(float lateralEsq, float lateralDir, float superior, float inferior)
+    public void GeraRelatorioDePassagemDeServico(LivroDePassagemDeServico passagem)
+    {
+        var pdf = ConfiguracaoDaPagina(15F, 15F, 15F, 20F, false);
+        var nomeDoArquivo = GerarNomeDoArquivo("PassagemDeServiço");
+        var arquivo = CriaArquivo(nomeDoArquivo);
+        var writer = GerarDocumentoPDF(pdf, arquivo);
+        pdf.Open();
+        var titulo = CriarTitulo($"Relatório De Passagem De Serviço\nCond. Altos Pq. Do Carmo.",20);
+        pdf.Add(titulo);
+        AdicionaLogo(caminhoLogo, pdf, writer);
+        var nomecolaborador = CriarParagrafo($"COLABORADOR: {passagem.NomeColaborador} EM {DateTime.Now.ToString("dd/MM/yy")}\n");
+        pdf.Add(nomecolaborador);
+        var conteudo = CriarParagrafo(passagem.RelatorioDiario);
+        pdf.Add(conteudo);
+        pdf.Close();
+        arquivo.Close();
+        AbrePDF(nomeDoArquivo);
+    }
+
+    private Document ConfiguracaoDaPagina(float lateralEsq, float lateralDir, float superior, float inferior, bool horizontal)
     {
         var pxPorMm = 72 / 25.2F;
         superior = superior * pxPorMm;
         inferior = inferior * pxPorMm;
         lateralEsq = lateralEsq * pxPorMm;
         lateralDir = lateralDir * pxPorMm;
+        if(horizontal == true)
+        {
+            return new Document(PageSize.A4.Rotate(), lateralEsq, lateralDir, superior, inferior);
+        }
+        else
+        {
+            return new Document(PageSize.A4, lateralEsq, lateralDir, superior, inferior);
+        }
 
-        return new Document(PageSize.A4.Rotate(), lateralEsq, lateralDir, superior, inferior);
+        
     }
 
-    private string GerarNomeDoArquivo()
+    private string GerarNomeDoArquivo(string tipoRelatorio)
     {
-        return $"Relatorio.{DateTime.Now.ToString("dd.MM.yyyy.HH.mm.ss")}.pdf";
+        return $"{tipoRelatorio}.{DateTime.Now.ToString("dd.MM.yyyy.HH.mm.ss")}.pdf";
     }
 
     private PdfWriter GerarDocumentoPDF( Document pdf, FileStream arquivo)
@@ -68,13 +95,21 @@ public class CriarRelatorio
 
     private FileStream CriaArquivo(string nomeDoArquivo)
     {
-        return new FileStream(nomeDoArquivo, FileMode.Create);
+        return new FileStream($"relatorio\\{nomeDoArquivo}", FileMode.Create);
     }
 
-    private Paragraph CriarTitulo(string titulo)
+    private Paragraph CriarTitulo(string titulo,int tamanhoFont)
     {
-        var fonteTitulo =  new iTextSharp.text.Font(fonteBase,32,iTextSharp.text.Font.NORMAL, BaseColor.Black);
+        var fonteTitulo =  new iTextSharp.text.Font(fonteBase, tamanhoFont, iTextSharp.text.Font.NORMAL, BaseColor.Black);
         var paragrafo = new Paragraph($"{titulo}\n\n", fonteTitulo);
+        paragrafo.Alignment = Element.ALIGN_LEFT;
+        paragrafo.SpacingAfter = 4;
+        return paragrafo;
+    }
+    private Paragraph CriarParagrafo(string conteudo)
+    {
+        var fonte = new iTextSharp.text.Font(fonteBase, 12, iTextSharp.text.Font.NORMAL, BaseColor.Black);
+        var paragrafo = new Paragraph($"{conteudo}", fonte);
         paragrafo.Alignment = Element.ALIGN_LEFT;
         paragrafo.SpacingAfter = 4;
         return paragrafo;
@@ -82,7 +117,7 @@ public class CriarRelatorio
 
     private void AbrePDF(string nomeDoArquivo)
     {
-        var caminhoPDF = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,nomeDoArquivo);
+        var caminhoPDF = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,$"relatorio\\{nomeDoArquivo}");
         if(File.Exists(caminhoPDF))
         {
             Process.Start(new ProcessStartInfo()

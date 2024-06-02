@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             groupBoxPassagemDeServico = new GroupBox();
-            buttonGerarRelatorio = new Button();
             richTextBoxConteudo = new RichTextBox();
             textBoxNomeColaborador = new TextBox();
             dataGridView = new DataGridView();
@@ -40,7 +39,6 @@
             // groupBoxPassagemDeServico
             // 
             groupBoxPassagemDeServico.Anchor = AnchorStyles.None;
-            groupBoxPassagemDeServico.Controls.Add(buttonGerarRelatorio);
             groupBoxPassagemDeServico.Controls.Add(richTextBoxConteudo);
             groupBoxPassagemDeServico.Controls.Add(textBoxNomeColaborador);
             groupBoxPassagemDeServico.Controls.Add(dataGridView);
@@ -49,18 +47,6 @@
             groupBoxPassagemDeServico.Size = new Size(629, 403);
             groupBoxPassagemDeServico.TabIndex = 0;
             groupBoxPassagemDeServico.TabStop = false;
-            // 
-            // buttonGerarRelatorio
-            // 
-            buttonGerarRelatorio.Anchor = AnchorStyles.None;
-            buttonGerarRelatorio.BackColor = Color.LightGreen;
-            buttonGerarRelatorio.FlatStyle = FlatStyle.Flat;
-            buttonGerarRelatorio.Location = new Point(242, 248);
-            buttonGerarRelatorio.Name = "buttonGerarRelatorio";
-            buttonGerarRelatorio.Size = new Size(170, 36);
-            buttonGerarRelatorio.TabIndex = 6;
-            buttonGerarRelatorio.Text = "Gerar Relatorio";
-            buttonGerarRelatorio.UseVisualStyleBackColor = false;
             // 
             // richTextBoxConteudo
             // 
@@ -85,10 +71,10 @@
             // dataGridView
             // 
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView.Location = new Point(63, 298);
+            dataGridView.Location = new Point(143, 298);
             dataGridView.Name = "dataGridView";
             dataGridView.RowTemplate.Height = 25;
-            dataGridView.Size = new Size(519, 99);
+            dataGridView.Size = new Size(383, 99);
             dataGridView.TabIndex = 0;
             dataGridView.CellClick += dataGridView_CellClick;
             // 
@@ -109,7 +95,6 @@
 
         private GroupBox groupBoxPassagemDeServico;
         private DataGridView dataGridView;
-        private Button buttonGerarRelatorio;
         private RichTextBox richTextBoxConteudo;
         private TextBox textBoxNomeColaborador;
     }

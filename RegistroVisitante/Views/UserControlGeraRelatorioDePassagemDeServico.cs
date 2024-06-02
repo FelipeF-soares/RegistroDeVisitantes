@@ -50,5 +50,16 @@ namespace RegistroVisitante.Views
             }
         }
 
+        private void buttonGerarRelatorio_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

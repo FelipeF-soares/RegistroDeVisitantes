@@ -60,7 +60,7 @@
             // 
             buttonRelatorioDePassagemDeServico.FlatStyle = FlatStyle.Flat;
             buttonRelatorioDePassagemDeServico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRelatorioDePassagemDeServico.Location = new Point(0, 381);
+            buttonRelatorioDePassagemDeServico.Location = new Point(0, 396);
             buttonRelatorioDePassagemDeServico.Name = "buttonRelatorioDePassagemDeServico";
             buttonRelatorioDePassagemDeServico.Size = new Size(168, 53);
             buttonRelatorioDePassagemDeServico.TabIndex = 5;
@@ -72,7 +72,7 @@
             // 
             buttonRelatorioDiario.FlatStyle = FlatStyle.Flat;
             buttonRelatorioDiario.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRelatorioDiario.Location = new Point(0, 328);
+            buttonRelatorioDiario.Location = new Point(0, 343);
             buttonRelatorioDiario.Name = "buttonRelatorioDiario";
             buttonRelatorioDiario.Size = new Size(168, 53);
             buttonRelatorioDiario.TabIndex = 4;
@@ -94,7 +94,7 @@
             // 
             buttonGerarRelatorio.FlatStyle = FlatStyle.Flat;
             buttonGerarRelatorio.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonGerarRelatorio.Location = new Point(0, 275);
+            buttonGerarRelatorio.Location = new Point(0, 290);
             buttonGerarRelatorio.Name = "buttonGerarRelatorio";
             buttonGerarRelatorio.Size = new Size(168, 53);
             buttonGerarRelatorio.TabIndex = 2;
@@ -106,7 +106,7 @@
             // 
             buttonRegistrarSaida.FlatStyle = FlatStyle.Flat;
             buttonRegistrarSaida.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRegistrarSaida.Location = new Point(0, 222);
+            buttonRegistrarSaida.Location = new Point(0, 237);
             buttonRegistrarSaida.Name = "buttonRegistrarSaida";
             buttonRegistrarSaida.Size = new Size(168, 53);
             buttonRegistrarSaida.TabIndex = 1;
@@ -118,7 +118,7 @@
             // 
             buttonRegistrarEntrada.FlatStyle = FlatStyle.Flat;
             buttonRegistrarEntrada.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRegistrarEntrada.Location = new Point(0, 169);
+            buttonRegistrarEntrada.Location = new Point(0, 184);
             buttonRegistrarEntrada.Name = "buttonRegistrarEntrada";
             buttonRegistrarEntrada.Size = new Size(168, 53);
             buttonRegistrarEntrada.TabIndex = 0;
@@ -142,7 +142,7 @@
             ClientSize = new Size(911, 450);
             Controls.Add(tabControl);
             Controls.Add(panelMenuLateral);
-            FormBorderStyle = FormBorderStyle.FixedSingle;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;

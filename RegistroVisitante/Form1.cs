@@ -78,7 +78,7 @@ public partial class Form1 : Form
             string name = "tabPageGeraRelatorioDePassagemDeSerico";
             string text = "Gera Relatório de Passagem de Serviço";
             UserControlGeraRelatorioDePassagemDeServico userControl = new UserControlGeraRelatorioDePassagemDeServico();
-            AdicionarTabPage(name , text, userControl);
+            AdicionarTabPage(name, text, userControl);
         }
         catch (Exception ex)
         {

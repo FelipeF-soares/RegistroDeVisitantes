@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             dataGridView = new DataGridView();
-            comboBoxApto = new ComboBox();
             comboBoxBloco = new ComboBox();
             textBoxRG = new TextBox();
             textBoxNome = new TextBox();
@@ -41,6 +40,7 @@
             buttonLimpar = new Button();
             textBoxID = new TextBox();
             labelID = new Label();
+            comboBoxApto = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
             // 
@@ -57,18 +57,6 @@
             dataGridView.Size = new Size(542, 150);
             dataGridView.TabIndex = 0;
             dataGridView.CellClick += dataGridView_CellClick;
-            // 
-            // comboBoxApto
-            // 
-            comboBoxApto.Anchor = AnchorStyles.None;
-            comboBoxApto.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboBoxApto.Enabled = false;
-            comboBoxApto.FormattingEnabled = true;
-            comboBoxApto.Items.AddRange(new object[] { "T1", "T2", "T3", "T4" });
-            comboBoxApto.Location = new Point(290, 155);
-            comboBoxApto.Name = "comboBoxApto";
-            comboBoxApto.Size = new Size(121, 23);
-            comboBoxApto.TabIndex = 15;
             // 
             // comboBoxBloco
             // 
@@ -185,15 +173,26 @@
             labelID.TabIndex = 18;
             labelID.Text = "ID:";
             // 
+            // comboBoxApto
+            // 
+            comboBoxApto.Anchor = AnchorStyles.None;
+            comboBoxApto.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxApto.FormattingEnabled = true;
+            comboBoxApto.Items.AddRange(new object[] { "T1", "T2", "T3", "T4", "T5", "11", "12", "13", "14", "15", "16", "21", "22", "23", "24", "25", "26", "31", "32", "33", "34", "35", "36", "41", "42", "43", "44", "45", "46", "51", "52", "53", "54", "55", "56", "61", "62", "63", "64", "65", "66", "71", "72", "73", "74", "75", "76", "81", "82", "83", "84", "85", "86", "91", "92", "93", "94", "95", "96", "101", "102", "103", "104", "105", "106", "111", "112", "113", "114", "115", "116", "121", "122", "123", "124", "125", "126", "131", "132", "133", "134", "135", "136" });
+            comboBoxApto.Location = new Point(290, 155);
+            comboBoxApto.Name = "comboBoxApto";
+            comboBoxApto.Size = new Size(121, 23);
+            comboBoxApto.TabIndex = 20;
+            // 
             // UserControlRegistrarSaida
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(comboBoxApto);
             Controls.Add(textBoxID);
             Controls.Add(labelID);
             Controls.Add(buttonRegistrarSaida);
             Controls.Add(buttonLimpar);
-            Controls.Add(comboBoxApto);
             Controls.Add(comboBoxBloco);
             Controls.Add(textBoxRG);
             Controls.Add(textBoxNome);
@@ -212,7 +211,6 @@
         #endregion
 
         private DataGridView dataGridView;
-        private ComboBox comboBoxApto;
         private ComboBox comboBoxBloco;
         private TextBox textBoxRG;
         private TextBox textBoxNome;
@@ -224,5 +222,6 @@
         private Button buttonLimpar;
         private TextBox textBoxID;
         private Label labelID;
+        private ComboBox comboBoxApto;
     }
 }
