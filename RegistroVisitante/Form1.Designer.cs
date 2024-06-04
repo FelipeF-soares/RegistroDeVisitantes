@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panelMenuLateral = new Panel();
+            pictureBox1 = new PictureBox();
             buttonRelatorioDePassagemDeServico = new Button();
             buttonRelatorioDiario = new Button();
-            pictureBox1 = new PictureBox();
             buttonGerarRelatorio = new Button();
             buttonRegistrarSaida = new Button();
             buttonRegistrarEntrada = new Button();
@@ -43,10 +43,10 @@
             // 
             // panelMenuLateral
             // 
-            panelMenuLateral.BackColor = Color.MediumPurple;
+            panelMenuLateral.BackColor = Color.FromArgb(54, 54, 54);
+            panelMenuLateral.Controls.Add(pictureBox1);
             panelMenuLateral.Controls.Add(buttonRelatorioDePassagemDeServico);
             panelMenuLateral.Controls.Add(buttonRelatorioDiario);
-            panelMenuLateral.Controls.Add(pictureBox1);
             panelMenuLateral.Controls.Add(buttonGerarRelatorio);
             panelMenuLateral.Controls.Add(buttonRegistrarSaida);
             panelMenuLateral.Controls.Add(buttonRegistrarEntrada);
@@ -56,11 +56,23 @@
             panelMenuLateral.Size = new Size(168, 450);
             panelMenuLateral.TabIndex = 0;
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(9, 11);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(150, 130);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 6;
+            pictureBox1.TabStop = false;
+            // 
             // buttonRelatorioDePassagemDeServico
             // 
+            buttonRelatorioDePassagemDeServico.FlatAppearance.BorderSize = 0;
             buttonRelatorioDePassagemDeServico.FlatStyle = FlatStyle.Flat;
             buttonRelatorioDePassagemDeServico.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRelatorioDePassagemDeServico.Location = new Point(0, 396);
+            buttonRelatorioDePassagemDeServico.ForeColor = SystemColors.ControlLightLight;
+            buttonRelatorioDePassagemDeServico.Location = new Point(0, 383);
             buttonRelatorioDePassagemDeServico.Name = "buttonRelatorioDePassagemDeServico";
             buttonRelatorioDePassagemDeServico.Size = new Size(168, 53);
             buttonRelatorioDePassagemDeServico.TabIndex = 5;
@@ -70,9 +82,11 @@
             // 
             // buttonRelatorioDiario
             // 
+            buttonRelatorioDiario.FlatAppearance.BorderSize = 0;
             buttonRelatorioDiario.FlatStyle = FlatStyle.Flat;
             buttonRelatorioDiario.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRelatorioDiario.Location = new Point(0, 343);
+            buttonRelatorioDiario.ForeColor = SystemColors.ControlLightLight;
+            buttonRelatorioDiario.Location = new Point(0, 329);
             buttonRelatorioDiario.Name = "buttonRelatorioDiario";
             buttonRelatorioDiario.Size = new Size(168, 53);
             buttonRelatorioDiario.TabIndex = 4;
@@ -80,21 +94,13 @@
             buttonRelatorioDiario.UseVisualStyleBackColor = true;
             buttonRelatorioDiario.Click += buttonRelatorioDiario_Click;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(17, 27);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(133, 136);
-            pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
             // buttonGerarRelatorio
             // 
+            buttonGerarRelatorio.FlatAppearance.BorderSize = 0;
             buttonGerarRelatorio.FlatStyle = FlatStyle.Flat;
             buttonGerarRelatorio.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonGerarRelatorio.Location = new Point(0, 290);
+            buttonGerarRelatorio.ForeColor = SystemColors.ControlLightLight;
+            buttonGerarRelatorio.Location = new Point(0, 278);
             buttonGerarRelatorio.Name = "buttonGerarRelatorio";
             buttonGerarRelatorio.Size = new Size(168, 53);
             buttonGerarRelatorio.TabIndex = 2;
@@ -104,9 +110,11 @@
             // 
             // buttonRegistrarSaida
             // 
+            buttonRegistrarSaida.FlatAppearance.BorderSize = 0;
             buttonRegistrarSaida.FlatStyle = FlatStyle.Flat;
             buttonRegistrarSaida.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRegistrarSaida.Location = new Point(0, 237);
+            buttonRegistrarSaida.ForeColor = SystemColors.ControlLightLight;
+            buttonRegistrarSaida.Location = new Point(0, 225);
             buttonRegistrarSaida.Name = "buttonRegistrarSaida";
             buttonRegistrarSaida.Size = new Size(168, 53);
             buttonRegistrarSaida.TabIndex = 1;
@@ -116,9 +124,11 @@
             // 
             // buttonRegistrarEntrada
             // 
+            buttonRegistrarEntrada.FlatAppearance.BorderSize = 0;
             buttonRegistrarEntrada.FlatStyle = FlatStyle.Flat;
             buttonRegistrarEntrada.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            buttonRegistrarEntrada.Location = new Point(0, 184);
+            buttonRegistrarEntrada.ForeColor = SystemColors.ControlLightLight;
+            buttonRegistrarEntrada.Location = new Point(0, 174);
             buttonRegistrarEntrada.Name = "buttonRegistrarEntrada";
             buttonRegistrarEntrada.Size = new Size(168, 53);
             buttonRegistrarEntrada.TabIndex = 0;
@@ -143,12 +153,12 @@
             Controls.Add(tabControl);
             Controls.Add(panelMenuLateral);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Registro de Visitantes";
             panelMenuLateral.ResumeLayout(false);
-            panelMenuLateral.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -160,8 +170,8 @@
         private TabControl tabControl;
         private Button buttonRegistrarSaida;
         private Button buttonGerarRelatorio;
-        private PictureBox pictureBox1;
         private Button buttonRelatorioDiario;
         private Button buttonRelatorioDePassagemDeServico;
+        private PictureBox pictureBox1;
     }
 }

@@ -59,5 +59,15 @@ namespace RegistroVisitante.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Icon semelhante a (Ícone).
+        /// </summary>
+        internal static System.Drawing.Icon rf {
+            get {
+                object obj = ResourceManager.GetObject("rf", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
     }
 }
